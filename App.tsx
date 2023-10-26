@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, ScrollView, Text, View } from 'react-native';
+import appInfo from "./app.json";
+import { PaperProvider, Appbar, TextInput } from 'react-native-paper';
+import { TabScreen, Tabs, TabsProvider } from 'react-native-paper-tabs';
+import styles from './styles';
+import QRCode from 'react-native-qrcode-svg';
+import RNFS from "react-native-fs";
+import papaparse from "papaparse";
+import { useRef, useState } from 'react';
+import { Svg } from 'react-native-svg';
+import { FormBuilder } from 'react-native-paper-form-builder';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <Appbar.Header>
+        <Appbar.Content title="BlueScout"></Appbar.Content>
+      </Appbar.Header>
+
+      <TabsProvider>
+        <Tabs disableSwipe={false}>
+
+          <TabScreen label='Match'>
+            <ScrollView contentContainerStyle={styles.formView}>
+
+              <View style={styles.formRow}>
+                <View style={styles.formRowInput}>
+                  <Text>Team Number</Text>
+                  <TextInput ></TextInput>
+                </View>
+              </View>
+
+            </ScrollView>
+          </TabScreen>
+
+          <TabScreen label='Robot'>
+            <ScrollView contentContainerStyle={styles.formView}>
+              
+            </ScrollView>
+          </TabScreen>
+
+        </Tabs>
+      </TabsProvider>
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent(appInfo.expo.name, () => App);

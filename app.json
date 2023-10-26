@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bluescout-native-app",
-    "slug": "bluescout-native-app",
+    "name": "bluescout",
+    "slug": "bluescout",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
